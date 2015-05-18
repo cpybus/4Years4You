@@ -1,10 +1,12 @@
 package me.chris.FourYearsForYou;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Image;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 import java.awt.Panel;
@@ -17,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
 import org.imgscalr.Scalr;
+
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
@@ -26,6 +29,8 @@ public class MainWindow extends JFrame
 	JLabel			banner;
 	SpringLayout	springLayout;
 	BufferedImage	scaledImg;
+	JPanel			divider;
+	JPanel			grayDrop;
 	
 	/**
 	 * Create the application.
@@ -40,6 +45,16 @@ public class MainWindow extends JFrame
 				scaledImg = Scalr.resize(GlobalVariables.banner, Scalr.Method.SPEED, Scalr.Mode.FIT_TO_WIDTH, arg0.getComponent().getWidth(), 400, Scalr.OP_ANTIALIAS);
 				springLayout.putConstraint(SpringLayout.SOUTH, banner, scaledImg.getHeight(), SpringLayout.NORTH, getContentPane());
 				banner.setIcon(new ImageIcon(scaledImg));
+				
+				springLayout.putConstraint(SpringLayout.NORTH, divider, getContentPane().getWidth() /4, SpringLayout.NORTH, getContentPane());
+				springLayout.putConstraint(SpringLayout.SOUTH, divider, (getContentPane().getWidth() /4) + 15, SpringLayout.NORTH, getContentPane());
+				
+				springLayout.putConstraint(SpringLayout.NORTH, grayDrop, -20, SpringLayout.NORTH, getContentPane());
+				springLayout.putConstraint(SpringLayout.WEST, grayDrop, getContentPane().getWidth() / 12, SpringLayout.WEST, getContentPane());
+				springLayout.putConstraint(SpringLayout.SOUTH, grayDrop, (getContentPane().getWidth() /9), SpringLayout.NORTH, getContentPane());
+				springLayout.putConstraint(SpringLayout.EAST, grayDrop, (getContentPane().getWidth() / 12) * 6, SpringLayout.WEST, getContentPane());
+				
+				getContentPane().repaint();
 			}
 		});
 		initialize();
@@ -58,6 +73,8 @@ public class MainWindow extends JFrame
 		springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 		
+		
+		
 		// banner stuff
 		banner = new JLabel("");
 		scaledImg = Scalr.resize(GlobalVariables.banner, Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_WIDTH, this.getWidth(), 400, Scalr.OP_ANTIALIAS);
@@ -68,7 +85,34 @@ public class MainWindow extends JFrame
 		banner.setIcon(new ImageIcon(scaledImg));
 		getContentPane().add(banner);
 		
-		// end
+		
+		
+		//divider stuff
+		divider = new JPanel();
+		divider.setBackground(Color.decode("#dd3322"));
+		springLayout.putConstraint(SpringLayout.NORTH, divider, getContentPane().getWidth() , SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, divider, 0, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, divider, (getContentPane().getWidth() ) + 30, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, divider, 0, SpringLayout.EAST, getContentPane());
+		getContentPane().add(divider);
+		
+		
+		
+		//logo & name stuff
+		grayDrop = new JPanel();
+		grayDrop.setBackground(Color.decode("#505050"));
+		springLayout.putConstraint(SpringLayout.NORTH, grayDrop, -20, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, grayDrop, getContentPane().getWidth() / 12, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, grayDrop, (getContentPane().getWidth() /9), SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, grayDrop, (getContentPane().getWidth() / 12) * 6, SpringLayout.WEST, getContentPane());
+		getContentPane().add(grayDrop);
+		
+		
+		
+		// tie up loose ends
+		getContentPane().setComponentZOrder(banner, 2);
+		getContentPane().setComponentZOrder(divider, 1);
+		getContentPane().setComponentZOrder(grayDrop, 0);
 		setVisible(true);
 	}
 }
