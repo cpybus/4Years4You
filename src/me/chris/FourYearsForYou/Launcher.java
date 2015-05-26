@@ -1,7 +1,5 @@
 package me.chris.FourYearsForYou;
 
-import java.awt.EventQueue;
-
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 

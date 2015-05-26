@@ -1,22 +1,16 @@
 package me.chris.FourYearsForYou;
 
 import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Image;
 
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
-import java.awt.Panel;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.border.LineBorder;
 
 import org.imgscalr.Scalr;
 
@@ -26,6 +20,10 @@ import java.awt.event.ComponentEvent;
 public class MainWindow extends JFrame
 {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2451788337777377959L;
 	JLabel			banner;
 	SpringLayout	springLayout;
 	BufferedImage	scaledImg;
@@ -49,7 +47,7 @@ public class MainWindow extends JFrame
 				springLayout.putConstraint(SpringLayout.NORTH, divider, getContentPane().getWidth() /4, SpringLayout.NORTH, getContentPane());
 				springLayout.putConstraint(SpringLayout.SOUTH, divider, (getContentPane().getWidth() /4) + 15, SpringLayout.NORTH, getContentPane());
 				
-				springLayout.putConstraint(SpringLayout.NORTH, grayDrop, -20, SpringLayout.NORTH, getContentPane());
+				springLayout.putConstraint(SpringLayout.NORTH, grayDrop, -50, SpringLayout.NORTH, getContentPane());
 				springLayout.putConstraint(SpringLayout.WEST, grayDrop, getContentPane().getWidth() / 12, SpringLayout.WEST, getContentPane());
 				springLayout.putConstraint(SpringLayout.SOUTH, grayDrop, (getContentPane().getWidth() /9), SpringLayout.NORTH, getContentPane());
 				springLayout.putConstraint(SpringLayout.EAST, grayDrop, (getContentPane().getWidth() / 12) * 6, SpringLayout.WEST, getContentPane());
@@ -100,8 +98,10 @@ public class MainWindow extends JFrame
 		
 		//logo & name stuff
 		grayDrop = new JPanel();
-		grayDrop.setBackground(Color.decode("#505050"));
-		springLayout.putConstraint(SpringLayout.NORTH, grayDrop, -20, SpringLayout.NORTH, getContentPane());
+		//grayDrop.setBackground(Color.decode("#505050"));
+		grayDrop.setOpaque(false);
+		grayDrop.setBorder(new RoundEdgedBorder());
+		springLayout.putConstraint(SpringLayout.NORTH, grayDrop, -50, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, grayDrop, getContentPane().getWidth() / 12, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, grayDrop, (getContentPane().getWidth() /9), SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, grayDrop, (getContentPane().getWidth() / 12) * 6, SpringLayout.WEST, getContentPane());
