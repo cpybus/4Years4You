@@ -35,6 +35,10 @@ public class MainWindow extends JFrame
 	 */
 	public MainWindow()
 	{
+		
+		//Code for resizing shit. We'll do that later.
+		
+		/*
 		getContentPane().addComponentListener(new ComponentAdapter()
 		{
 			@Override
@@ -55,7 +59,9 @@ public class MainWindow extends JFrame
 				getContentPane().repaint();
 			}
 		});
+		*/
 		initialize();
+		getContentPane().repaint();
 	}
 	
 	/**
@@ -64,8 +70,11 @@ public class MainWindow extends JFrame
 	private void initialize()
 	{
 		// window properties
-		setBounds(100, 100, 1500, 699);
+		setBounds(100, 100, 900, 950);
+		setResizable(false);
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		
 		// layout
 		springLayout = new SpringLayout();
@@ -88,9 +97,9 @@ public class MainWindow extends JFrame
 		//divider stuff
 		divider = new JPanel();
 		divider.setBackground(Color.decode("#dd3322"));
-		springLayout.putConstraint(SpringLayout.NORTH, divider, getContentPane().getWidth() , SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, divider, getContentPane().getWidth() /4, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, divider, (getContentPane().getWidth() /4) + 15, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, divider, 0, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, divider, (getContentPane().getWidth() ) + 30, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, divider, 0, SpringLayout.EAST, getContentPane());
 		getContentPane().add(divider);
 		
@@ -113,6 +122,7 @@ public class MainWindow extends JFrame
 		getContentPane().setComponentZOrder(banner, 2);
 		getContentPane().setComponentZOrder(divider, 1);
 		getContentPane().setComponentZOrder(grayDrop, 0);
+		
 		setVisible(true);
 	}
 }
