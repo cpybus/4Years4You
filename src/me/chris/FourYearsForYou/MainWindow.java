@@ -46,6 +46,26 @@ public class MainWindow extends JFrame
 	JLabel label_1;
 	JLabel label;
 	
+	SemesterBox fresh_fall;
+	SemesterBox fresh_winter;
+	SemesterBox fresh_spring;
+	SemesterBox fresh_summer;
+	
+	SemesterBox soph_fall;
+	SemesterBox soph_winter;
+	SemesterBox soph_spring;
+	SemesterBox soph_summer;
+	
+	SemesterBox juni_fall;
+	SemesterBox juni_winter;
+	SemesterBox juni_spring;
+	SemesterBox juni_summer;
+	
+	SemesterBox seni_fall;
+	SemesterBox seni_winter;
+	SemesterBox seni_spring;
+	SemesterBox seni_summer;
+	
 	/**
 	 * Create the application.
 	 */
@@ -67,6 +87,78 @@ public class MainWindow extends JFrame
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		label_6 = new JLabel("");
+		label_6.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Red Divider.png")));
+		label_6.setBounds(0, 929, 1100, 21);
+		contentPane.add(label_6);
+		
+		fresh_fall = new SemesterBox(0, true);
+		fresh_fall.setLocation(19, 360);
+		contentPane.add(fresh_fall);
+		
+		fresh_winter = new SemesterBox(1, false);
+		fresh_winter.setLocation(fresh_fall.getX()+fresh_fall.getWidth()+17, 360);
+		contentPane.add(fresh_winter);
+		
+		fresh_spring = new SemesterBox(2, true);
+		fresh_spring.setLocation(fresh_winter.getX()+fresh_winter.getWidth()+17, 360);
+		contentPane.add(fresh_spring);
+		
+		fresh_summer = new SemesterBox(3, false);
+		fresh_summer.setLocation(fresh_spring.getX()+fresh_spring.getWidth()+17, 360);
+		contentPane.add(fresh_summer);
+		
+		
+		soph_fall = new SemesterBox(0, true);
+		soph_fall.setLocation(19, 571);
+		contentPane.add(soph_fall);
+		
+		soph_winter = new SemesterBox(1, false);
+		soph_winter.setLocation(soph_fall.getX()+soph_fall.getWidth()+17, 571);
+		contentPane.add(soph_winter);
+		
+		soph_spring = new SemesterBox(2, true);
+		soph_spring.setLocation(soph_winter.getX()+soph_winter.getWidth()+17, 571);
+		contentPane.add(soph_spring);
+		
+		soph_summer = new SemesterBox(3, false);
+		soph_summer.setLocation(soph_spring.getX()+soph_spring.getWidth()+17, 571);
+		contentPane.add(soph_summer);
+		
+		
+		juni_fall = new SemesterBox(0, true);
+		juni_fall.setLocation(19, 782);
+		contentPane.add(juni_fall);
+		
+		juni_winter = new SemesterBox(1, false);
+		juni_winter.setLocation(juni_fall.getX()+juni_fall.getWidth()+17, 782);
+		contentPane.add(juni_winter);
+		
+		juni_spring = new SemesterBox(2, true);
+		juni_spring.setLocation(juni_winter.getX()+juni_winter.getWidth()+17, 782);
+		contentPane.add(juni_spring);
+		
+		juni_summer = new SemesterBox(3, false);
+		juni_summer.setLocation(juni_spring.getX()+juni_spring.getWidth()+17, 782);
+		contentPane.add(juni_summer);
+		
+		
+		seni_fall = new SemesterBox(0, true);
+		seni_fall.setLocation(19, 993);
+		contentPane.add(seni_fall);
+		
+		seni_winter = new SemesterBox(1, false);
+		seni_winter.setLocation(seni_fall.getX()+seni_fall.getWidth()+17, 993);
+		contentPane.add(seni_winter);
+		
+		seni_spring = new SemesterBox(2, true);
+		seni_spring.setLocation(seni_winter.getX()+seni_winter.getWidth()+17, 993);
+		contentPane.add(seni_spring);
+		
+		seni_summer = new SemesterBox(3, false);
+		seni_summer.setLocation(seni_spring.getX()+seni_spring.getWidth()+17, 993);
+		contentPane.add(seni_summer);
+		
 		label_8 = new JLabel("");
 		label_8.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Info Box.png")));
 		label_8.setBounds(915, 263, 75, 50);
@@ -76,11 +168,6 @@ public class MainWindow extends JFrame
 		label_7.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Info Box.png")));
 		label_7.setBounds(1000, 263, 75, 50);
 		contentPane.add(label_7);
-		
-		label_6 = new JLabel("");
-		label_6.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Red Divider.png")));
-		label_6.setBounds(0, 929, 1100, 21);
-		contentPane.add(label_6);
 		
 		label_5 = new JLabel("");
 		label_5.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Row Backgrounds.png")));
@@ -152,6 +239,26 @@ public class MainWindow extends JFrame
 						
 						label_7.setBounds(1000, 7, 75, 50);
 						label_8.setBounds(915, 7, 75, 50);
+						
+						fresh_fall.setLocation(19, 64 + 40);
+						fresh_winter.setLocation(fresh_fall.getX()+fresh_fall.getWidth()+17, 64 + 40);
+						fresh_spring.setLocation(fresh_winter.getX()+fresh_winter.getWidth()+17, 64 + 40);
+						fresh_summer.setLocation(fresh_spring.getX()+fresh_spring.getWidth()+17, 64 + 40);
+						
+						soph_fall.setLocation(19, 64 + 251);
+						soph_winter.setLocation(soph_fall.getX()+soph_fall.getWidth()+17, 64 + 251);
+						soph_spring.setLocation(soph_winter.getX()+soph_winter.getWidth()+17, 64 + 251);
+						soph_summer.setLocation(soph_spring.getX()+soph_spring.getWidth()+17, 64 + 251);
+						
+						juni_fall.setLocation(19, 64 + 462);
+						juni_winter.setLocation(juni_fall.getX()+juni_fall.getWidth()+17, 64 + 462);
+						juni_spring.setLocation(juni_winter.getX()+juni_winter.getWidth()+17, 64 + 462);
+						juni_summer.setLocation(juni_spring.getX()+juni_spring.getWidth()+17, 64 + 462);
+						
+						seni_fall.setLocation(19, 64 + 673);
+						seni_winter.setLocation(seni_fall.getX()+seni_fall.getWidth()+17, 64 + 673);
+						seni_spring.setLocation(seni_winter.getX()+seni_winter.getWidth()+17, 64 + 673);
+						seni_summer.setLocation(seni_spring.getX()+seni_spring.getWidth()+17, 64 + 673);
 					}
 					else
 					{
@@ -163,6 +270,26 @@ public class MainWindow extends JFrame
 						
 						label_7.setBounds(1000, future_y - 57, 75, 50);
 						label_8.setBounds(915, future_y - 57, 75, 50);
+						
+						fresh_fall.setLocation(19, future_y + 40);
+						fresh_winter.setLocation(fresh_fall.getX()+fresh_fall.getWidth()+17, future_y + 40);
+						fresh_spring.setLocation(fresh_winter.getX()+fresh_winter.getWidth()+17, future_y + 40);
+						fresh_summer.setLocation(fresh_spring.getX()+fresh_spring.getWidth()+17, future_y + 40);
+						
+						soph_fall.setLocation(19, future_y + 251);
+						soph_winter.setLocation(soph_fall.getX()+soph_fall.getWidth()+17, future_y + 251);
+						soph_spring.setLocation(soph_winter.getX()+soph_winter.getWidth()+17, future_y + 251);
+						soph_summer.setLocation(soph_spring.getX()+soph_spring.getWidth()+17, future_y + 251);
+						
+						juni_fall.setLocation(19, future_y + 462);
+						juni_winter.setLocation(juni_fall.getX()+juni_fall.getWidth()+17, future_y + 462);
+						juni_spring.setLocation(juni_winter.getX()+juni_winter.getWidth()+17, future_y + 462);
+						juni_summer.setLocation(juni_spring.getX()+juni_spring.getWidth()+17, future_y + 462);
+						
+						seni_fall.setLocation(19, future_y + 673);
+						seni_winter.setLocation(seni_fall.getX()+seni_fall.getWidth()+17, future_y + 673);
+						seni_spring.setLocation(seni_winter.getX()+seni_winter.getWidth()+17, future_y + 673);
+						seni_summer.setLocation(seni_spring.getX()+seni_spring.getWidth()+17, future_y + 673);
 					}					
 				}
 				else if(arg0.getWheelRotation() < 0) //scroll up, move rows down
@@ -199,6 +326,26 @@ public class MainWindow extends JFrame
 						label_7.setBounds(1000, 263, 75, 50);
 						label_8.setBounds(915, 263, 75, 50);
 						
+						fresh_fall.setLocation(19, 320 + 40);
+						fresh_winter.setLocation(fresh_fall.getX()+fresh_fall.getWidth()+17, 320 + 40);
+						fresh_spring.setLocation(fresh_winter.getX()+fresh_winter.getWidth()+17, 320 + 40);
+						fresh_summer.setLocation(fresh_spring.getX()+fresh_spring.getWidth()+17, 320 + 40);
+						
+						soph_fall.setLocation(19, 320 + 251);
+						soph_winter.setLocation(soph_fall.getX()+soph_fall.getWidth()+17, 320 + 251);
+						soph_spring.setLocation(soph_winter.getX()+soph_winter.getWidth()+17, 320 + 251);
+						soph_summer.setLocation(soph_spring.getX()+soph_spring.getWidth()+17, 320 + 251);
+						
+						juni_fall.setLocation(19, 320 + 462);
+						juni_winter.setLocation(juni_fall.getX()+juni_fall.getWidth()+17, 320 + 462);
+						juni_spring.setLocation(juni_winter.getX()+juni_winter.getWidth()+17, 320 + 462);
+						juni_summer.setLocation(juni_spring.getX()+juni_spring.getWidth()+17, 320 + 462);
+						
+						seni_fall.setLocation(19, 320 + 673);
+						seni_winter.setLocation(seni_fall.getX()+seni_fall.getWidth()+17, 320 + 673);
+						seni_spring.setLocation(seni_winter.getX()+seni_winter.getWidth()+17, 320 + 673);
+						seni_summer.setLocation(seni_spring.getX()+seni_spring.getWidth()+17, 320 + 673);
+						
 					}
 					else
 					{
@@ -210,6 +357,26 @@ public class MainWindow extends JFrame
 						
 						label_7.setBounds(1000, future_y - 57, 75, 50);
 						label_8.setBounds(915, future_y - 57, 75, 50);
+						
+						fresh_fall.setLocation(19, future_y + 40);
+						fresh_winter.setLocation(fresh_fall.getX()+fresh_fall.getWidth()+17, future_y + 40);
+						fresh_spring.setLocation(fresh_winter.getX()+fresh_winter.getWidth()+17, future_y + 40);
+						fresh_summer.setLocation(fresh_spring.getX()+fresh_spring.getWidth()+17, future_y + 40);
+						
+						soph_fall.setLocation(19, future_y + 251);
+						soph_winter.setLocation(soph_fall.getX()+soph_fall.getWidth()+17, future_y + 251);
+						soph_spring.setLocation(soph_winter.getX()+soph_winter.getWidth()+17, future_y + 251);
+						soph_summer.setLocation(soph_spring.getX()+soph_spring.getWidth()+17, future_y + 251);
+						
+						juni_fall.setLocation(19, future_y + 462);
+						juni_winter.setLocation(juni_fall.getX()+juni_fall.getWidth()+17, future_y + 462);
+						juni_spring.setLocation(juni_winter.getX()+juni_winter.getWidth()+17, future_y + 462);
+						juni_summer.setLocation(juni_spring.getX()+juni_spring.getWidth()+17, future_y + 462);
+						
+						seni_fall.setLocation(19, future_y + 673);
+						seni_winter.setLocation(seni_fall.getX()+seni_fall.getWidth()+17, future_y + 673);
+						seni_spring.setLocation(seni_winter.getX()+seni_winter.getWidth()+17, future_y + 673);
+						seni_summer.setLocation(seni_spring.getX()+seni_spring.getWidth()+17, future_y + 673);
 					}
 				}				
 			}
