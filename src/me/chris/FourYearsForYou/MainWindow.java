@@ -13,12 +13,15 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import org.imgscalr.Scalr;
 
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -30,11 +33,18 @@ public class MainWindow extends JFrame
 	 * 
 	 */
 	private static final long serialVersionUID = -2451788337777377959L;
-	JLabel			banner;
-	SpringLayout	springLayout;
-	BufferedImage	scaledImg;
-	JPanel			divider;
-	JPanel			grayDrop;
+	
+	private JPanel contentPane;
+	
+	JLabel label_8;
+	JLabel label_7;
+	JLabel label_6;
+	JLabel label_5;
+	JLabel label_4;
+	JLabel label_3;
+	JLabel label_2;
+	JLabel label_1;
+	JLabel label;
 	
 	/**
 	 * Create the application.
@@ -42,131 +52,167 @@ public class MainWindow extends JFrame
 	public MainWindow()
 	{
 		
-		//Code for resizing shit. We'll do that later.
-		
-		/*
-		getContentPane().addComponentListener(new ComponentAdapter()
-		{
-			@Override
-			public void componentResized(ComponentEvent arg0)
-			{
-				scaledImg = Scalr.resize(GlobalVariables.banner, Scalr.Method.SPEED, Scalr.Mode.FIT_TO_WIDTH, arg0.getComponent().getWidth(), 400, Scalr.OP_ANTIALIAS);
-				springLayout.putConstraint(SpringLayout.SOUTH, banner, scaledImg.getHeight(), SpringLayout.NORTH, getContentPane());
-				banner.setIcon(new ImageIcon(scaledImg));
-				
-				springLayout.putConstraint(SpringLayout.NORTH, divider, getContentPane().getWidth() /4, SpringLayout.NORTH, getContentPane());
-				springLayout.putConstraint(SpringLayout.SOUTH, divider, (getContentPane().getWidth() /4) + 15, SpringLayout.NORTH, getContentPane());
-				
-				springLayout.putConstraint(SpringLayout.NORTH, grayDrop, -50, SpringLayout.NORTH, getContentPane());
-				springLayout.putConstraint(SpringLayout.WEST, grayDrop, getContentPane().getWidth() / 12, SpringLayout.WEST, getContentPane());
-				springLayout.putConstraint(SpringLayout.SOUTH, grayDrop, (getContentPane().getWidth() /9), SpringLayout.NORTH, getContentPane());
-				springLayout.putConstraint(SpringLayout.EAST, grayDrop, (getContentPane().getWidth() / 12) * 6, SpringLayout.WEST, getContentPane());
-				
-				getContentPane().repaint();
-			}
-		});
-		*/
 		initialize();
-		getContentPane().repaint();
+		setVisible(true);
 	}
 	
 	private void initialize()
 	{
-		// window properties
-		setBounds(100, 100, 900, 950);
-		setResizable(false);
-		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1115, 989);
+		setLocationRelativeTo(null);
+		contentPane = new JPanel();
 		
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		// layout
-		springLayout = new SpringLayout();
-		getContentPane().setLayout(springLayout);
+		label_8 = new JLabel("");
+		label_8.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Info Box.png")));
+		label_8.setBounds(915, 263, 75, 50);
+		contentPane.add(label_8);
 		
+		label_7 = new JLabel("");
+		label_7.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Info Box.png")));
+		label_7.setBounds(1000, 263, 75, 50);
+		contentPane.add(label_7);
 		
+		label_6 = new JLabel("");
+		label_6.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Red Divider.png")));
+		label_6.setBounds(0, 929, 1100, 21);
+		contentPane.add(label_6);
 		
-		// banner stuff
-		banner = new JLabel("");
-		scaledImg = Scalr.resize(GlobalVariables.banner, Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_WIDTH, this.getWidth(), 400, Scalr.OP_ANTIALIAS);
-		springLayout.putConstraint(SpringLayout.NORTH, banner, 0, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, banner, 0, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, banner, scaledImg.getHeight(), SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, banner, 0, SpringLayout.EAST, getContentPane());
-		banner.setIcon(new ImageIcon(scaledImg));
-		getContentPane().add(banner);
+		label_5 = new JLabel("");
+		label_5.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Row Backgrounds.png")));
+		label_5.setBounds(0, 341, 1100, 844);
+		contentPane.add(label_5);
 		
+		label_4 = new JLabel("");
+		label_4.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Red Divider.png")));
+		label_4.setBounds(0, 320, 1100, 21);
+		contentPane.add(label_4);
 		
+		label_3 = new JLabel("");
+		label_3.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/RPI Title.png")));
+		label_3.setBounds(80, 5, 165, 39);
+		contentPane.add(label_3);
 		
-		//divider stuff
-		divider = new JPanel();
-		divider.setBackground(Color.decode("#dd3322"));
-		//springLayout.putConstraint(SpringLayout.NORTH, divider, getContentPane().getWidth() /4, SpringLayout.NORTH, getContentPane());
-		//springLayout.putConstraint(SpringLayout.SOUTH, divider, (getContentPane().getWidth() /4) + 15, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, divider, 240, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, divider, 240 + 12, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, divider, 0, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, divider, 0, SpringLayout.EAST, getContentPane());
-		getContentPane().add(divider);
+		label_2 = new JLabel("");
+		label_2.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/4Y4Y Title.png")));
+		label_2.setBounds(55, 15, 338, 108);
+		contentPane.add(label_2);
 		
+		label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Gray Drop.png")));
+		label_1.setBounds(64, -50, 342, 155);
+		contentPane.add(label_1);
 		
+		label = new JLabel("");
+		label.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Banner.png")));
+		label.setBounds(0, -75, 1100, 514);
+		contentPane.add(label);
 		
-		//gray drop
-		grayDrop = new JPanel();
-		//grayDrop.setOpaque(false);
-		grayDrop.setBorder(new RoundEdgedBorder());
-		grayDrop.setLayout(null);
-		springLayout.putConstraint(SpringLayout.NORTH, grayDrop, -50, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, grayDrop, 75, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, grayDrop, 120, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, grayDrop, 450, SpringLayout.WEST, getContentPane());
-		
-		springLayout.putConstraint(SpringLayout.NORTH, grayDrop, 400, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, grayDrop, 75, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, grayDrop, 700, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, grayDrop, 450, SpringLayout.WEST, getContentPane());
-		getContentPane().add(grayDrop);
-		
-		
-		
-		//4y4y logo
-		JLabel fyfy = new JLabel(); 
-		fyfy.setText("4 Years 4 You");
-		
-		//Font f = Font.decode("Roboto Black-50");
-		fyfy.setFont(GlobalVariables.robotoBlack);
-			
-		//fyfy.setFont(new Font("Roboto-Black", Font., 50));
-		
-		/*
-		URL u = MainWindow.class.getResource("/me/chris/Resources/Roboto-Blac.ttf");
-		Font font = null;
-		try
+		contentPane.addMouseWheelListener(new MouseWheelListener()
 		{
-			font = Font.createFont(Font.TRUETYPE_FONT, new File(u.getFile()));
-		}
-		catch (FontFormatException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (IOException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		font.deriveFont(50);*/
-		
-		fyfy.setForeground(Color.decode("#D1D1DA"));
-		fyfy.setBounds(10, 60, 400, 400);		
-		grayDrop.add(fyfy);
-		
-		
-		// tie up loose ends
-		getContentPane().setComponentZOrder(banner, 2);
-		getContentPane().setComponentZOrder(divider, 1);
-		getContentPane().setComponentZOrder(grayDrop, 0);
-		
-		setVisible(true);
+			public void mouseWheelMoved(MouseWheelEvent arg0)
+			{
+				int current_y = label_4.getLocation().y;
+				int future_y = current_y - arg0.getUnitsToScroll()*4;
+				
+				if(arg0.getWheelRotation() > 0) //scroll down, move rows up
+				{
+					//4y4y title
+					if(future_y < 64)
+					{
+						label_2.setBounds(55, -20, 338, 108);
+						label_3.setBounds(375, 15, 165, 39);
+						
+						label_1.setBounds(64, -50, 492, 155);
+						label_1.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Gray Drop - Scrolled.png")));
+					}
+					else if(future_y < 95)
+					{
+						label_2.setBounds(55, future_y - 80, 338, 108);
+						label_3.setBounds(80, future_y - 90, 165, 39);
+					}
+					else
+					{
+						label_2.setBounds(55, 15, 338, 108);
+						label_3.setBounds(80, 5, 165, 39);
+					}
+					
+					//red divider and banner
+					if(future_y < 64)
+					{
+						label_5.setBounds(0, 85, 1100, 844);
+						
+						label_4.setBounds(0, 64, 1100, 21);
+						
+						label.setBounds(0, -203, 1100, 514);
+						
+						label_7.setBounds(1000, 7, 75, 50);
+						label_8.setBounds(915, 7, 75, 50);
+					}
+					else
+					{
+						label_4.setBounds(0, future_y, 1100, 21);
+						
+						label_5.setBounds(0, future_y + 21, 1100, 844);
+						
+						label.setBounds(0, future_y / 2 - 235 , 1100, 514);
+						
+						label_7.setBounds(1000, future_y - 57, 75, 50);
+						label_8.setBounds(915, future_y - 57, 75, 50);
+					}					
+				}
+				else if(arg0.getWheelRotation() < 0) //scroll up, move rows down
+				{
+					//4y4y title
+					if(future_y > 95)
+					{
+						label_2.setBounds(55, 15, 338, 108);
+						label_3.setBounds(80, 5, 165, 39);
+					}
+					else if(future_y > 64)
+					{
+						label_2.setBounds(55, future_y - 80, 338, 108);
+						label_3.setBounds(80, future_y - 90, 165, 39);
+						
+						label_1.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Gray Drop.png")));
+						label_1.setBounds(64, -50, 342, 155);
+					}
+					else
+					{
+						label_2.setBounds(55, 15, 338, 108);
+						label_3.setBounds(80, 5, 165, 39);
+					}
+					
+					//red divider and banner
+					if(future_y > 320)
+					{
+						label_4.setBounds(0, 320, 1100, 21);
+						
+						label.setBounds(0, -75, 1100, 514);
+						
+						label_5.setBounds(0, 341, 1100, 844);
+						
+						label_7.setBounds(1000, 263, 75, 50);
+						label_8.setBounds(915, 263, 75, 50);
+						
+					}
+					else
+					{
+						label_4.setBounds(0, future_y, 1100, 21);
+						
+						label.setBounds(0, future_y / 2 - 235 , 1100, 514);
+						
+						label_5.setBounds(0, future_y + 21, 1100, 844);
+						
+						label_7.setBounds(1000, future_y - 57, 75, 50);
+						label_8.setBounds(915, future_y - 57, 75, 50);
+					}
+				}				
+			}
+		});
 	}
 }
