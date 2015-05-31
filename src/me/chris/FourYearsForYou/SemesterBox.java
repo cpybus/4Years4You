@@ -15,68 +15,146 @@ import java.awt.event.MouseEvent;
 public class SemesterBox extends JPanel
 {
 	private static final long serialVersionUID = -6306507456401691244L;
-	JLabel label_1;
-	boolean state; //true means expanded, false means contracted, null means animating
+	JLabel grid;
+	JLabel label;
+	boolean state; // true means expanded, false means contracted, null means animating
+	JPanel classes;
+	JLabel seasonLabel;
 	
+	Class c1;
+	Class c2;
+	Class c3;
+	Class c4;
+	Class c5;
+	Class c6;
+	Class c7;
+
 	public SemesterBox(int season, boolean open)
 	{
+		setBorder(new LineBorder(new Color(0, 0, 0), 3));
 		setLayout(null);
+		this.state = open;
 
-		JLabel label = new JLabel("");
-
+		
+		//Season Label
+		seasonLabel = new JLabel("");
+		seasonLabel.setBounds(3, 3, 34, 167);
 		if (season == 0)
-			label.setIcon(new ImageIcon(SemesterBox.class.getResource("/me/chris/Resources/FallHeader.png")));
+			seasonLabel.setIcon(new ImageIcon(SemesterBox.class.getResource("/me/chris/Resources/FallHeader.png")));
 		else if (season == 1)
-			label.setIcon(new ImageIcon(SemesterBox.class.getResource("/me/chris/Resources/WinterHeader.png")));
+			seasonLabel.setIcon(new ImageIcon(SemesterBox.class.getResource("/me/chris/Resources/WinterHeader.png")));
 		else if (season == 2)
-			label.setIcon(new ImageIcon(SemesterBox.class.getResource("/me/chris/Resources/SpringHeader.png")));
+			seasonLabel.setIcon(new ImageIcon(SemesterBox.class.getResource("/me/chris/Resources/SpringHeader.png")));
 		else if (season == 3)
-			label.setIcon(new ImageIcon(SemesterBox.class.getResource("/me/chris/Resources/SummerHeader.png")));
+			seasonLabel.setIcon(new ImageIcon(SemesterBox.class.getResource("/me/chris/Resources/SummerHeader.png")));
+		add(seasonLabel);
 
-		label.setBounds(3, 3, 34, 167);
-		add(label);
-
-		label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(SemesterBox.class.getResource("/me/chris/Resources/Grid.png")));
-		label_1.setBounds(37, 3, 425, 167);
-		add(label_1);
-
+		
+		//Classes JPanel
+		classes = new JPanel();
+		classes.setBounds(37, 3, 425, 167);
+		add(classes);
+		classes.setLayout(null);
+		
+		
+		c1 = new Class();
+		c1.setLocation(0, 0);
+		classes.add(c1);
+		
+		c2 = new Class();
+		c2.setLocation(0, 24);
+		classes.add(c2);
+		
+		c3 = new Class();
+		c3.setLocation(0, 48);
+		classes.add(c3);
+		
+		c4 = new Class();
+		c4.setLocation(0, 72);
+		classes.add(c4);
+		
+		c5 = new Class();
+		c5.setLocation(0, 96);
+		classes.add(c5);
+		
+		c6 = new Class();
+		c6.setLocation(0, 120);
+		classes.add(c6);
+		
+		c7 = new Class();
+		c7.setLocation(0, 144);
+		classes.add(c7);
+		
+		
+		//The grid thing
+		grid = new JLabel("");
+		grid.setBounds(0, 0, 425, 167);
+		classes.add(grid);
+		grid.setIcon(new ImageIcon(SemesterBox.class.getResource("/me/chris/Resources/Grid.png")));
+		
+		
+		
+		//Finally set the size
 		if (open)
 		{
 			setBounds(0, 0, 465, 173);
-			label_1.setBounds(37, 3, 425, 167);
+			classes.setBounds(37, 3, 425, 167);
 		}
 		else
 		{
 			setBounds(0, 0, 40, 173);
-			label_1.setBounds(37, 3, 0, 167);
+			classes.setBounds(37, 3, 0, 167);
 		}
-
-		setBorder(new LineBorder(new Color(0, 0, 0), 3));
 		
-		this.state = open;
-		
-		addMouseListener(new MouseAdapter()
-		{
-			@Override
-			public void mouseClicked(MouseEvent e)
-			{
-				//MouseEvent convertMouseEvent = SwingUtilities.convertMouseEvent(e.getComponent(), e, e.getComponent().getParent());
-				e.getComponent().getParent().dispatchEvent(e);
-			}
-		});
-
-		
-		label.addMouseListener(new MouseAdapter()
+		seasonLabel.addMouseListener(new MouseAdapter()
 		{
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
 				MouseEvent convertMouseEvent = SwingUtilities.convertMouseEvent(e.getComponent(), e, e.getComponent().getParent());
-				e.getComponent().getParent().dispatchEvent(convertMouseEvent);
+				e.getComponent().getParent().getParent().dispatchEvent(convertMouseEvent);
 			}
 		});
 	}
 	
-
+	public boolean addClass(Class c)
+	{
+		if(c1.isEmpty())
+		{
+			c1.set(c);
+			return true;
+		}
+		else if(c2.isEmpty())
+		{
+			c2.set(c);
+			return true;
+		}
+		else if(c3.isEmpty())
+		{
+			c3.set(c);
+			return true;
+		}
+		else if(c4.isEmpty())
+		{
+			c4.set(c);
+			return true;
+		}
+		else if(c5.isEmpty())
+		{
+			c5.set(c);
+			return true;
+		}
+		else if(c6.isEmpty())
+		{
+			c6.set(c);
+			return true;
+		}
+		else if(c7.isEmpty())
+		{
+			c7.set(c);
+			return true;
+		}
+		else
+			return false;
+	}
 }

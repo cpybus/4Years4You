@@ -1,44 +1,30 @@
 package me.chris.FourYearsForYou;
 
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.GraphicsEnvironment;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 
 public class GlobalVariables
 {
-	public static BufferedImage banner;
-	
-	public static Font robotoBlack;
+	public static MainWindow p;
+	public static Class cla;
 
 	GlobalVariables()
 	{
-		URL u = MainWindow.class.getResource("/me/chris/Resources/RPIQuad.jpg");
+		cla = new Class();
+		cla.setLocation(0,0);
+		cla.setOpaque(true);
+		cla.setVisible(false);
+	}
+
+	public static double isDouble(String s)
+	{
 		try
 		{
-			banner = ImageIO.read(u);
+			double d = Double.parseDouble(s);
+			return d;
 		}
-		catch (IOException e)
+		catch (NumberFormatException e)
 		{
-			e.printStackTrace();
+			return -1;// not a double
 		}
-
-		u = MainWindow.class.getResource("/me/chris/Resources/Roboto-Blac.ttf");
-		 
-		try
-		{
-			
-			robotoBlack = Font.createFont(Font.TRUETYPE_FONT, new File(u.getFile())).deriveFont(50f);
-		}
-		catch (IOException | FontFormatException e)
-		{
-			// Handle exception
-		}
-
 	}
 }

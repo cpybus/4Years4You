@@ -1,37 +1,20 @@
 package me.chris.FourYearsForYou;
 
 import java.awt.*;
-import java.awt.event.*;
 
 import javax.swing.*;
-
-import java.awt.image.BufferedImage;
-
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-
-import org.imgscalr.Scalr;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 
 public class MainWindow extends JFrame implements ActionListener
 {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2451788337777377959L;
 
 	private JPanel contentPane;
@@ -72,27 +55,27 @@ public class MainWindow extends JFrame implements ActionListener
 	int row;
 	boolean animate; //true means expand, false means contract
 
-	/**
-	 * Create the application.
-	 */
 	public MainWindow()
 	{
-
 		initialize();
+		GlobalVariables.p = this;
 		setVisible(true);
 	}
 
 	private void initialize()
 	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1115, 989);
+		//setBounds(100, 100, 1115, 989);
+		setBounds(100, 100, 1100, 975);
 		setLocationRelativeTo(null);
-		//setResizable(false);
+		setResizable(false);
 		contentPane = new JPanel();
 
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		contentPane.add(GlobalVariables.cla);
 
 		label_6 = new JLabel("");
 		label_6.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Red Divider.png")));
@@ -202,6 +185,8 @@ public class MainWindow extends JFrame implements ActionListener
 		label.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Banner.png")));
 		label.setBounds(0, -75, 1100, 514);
 		contentPane.add(label);
+		
+		
 
 		contentPane.addMouseListener(new MouseAdapter()
 		{
@@ -436,12 +421,12 @@ public class MainWindow extends JFrame implements ActionListener
 			if (size - nextSize < 40)
 			{
 				s.setSize(40, 173);
-				s.label_1.setSize(0, 167);
+				s.classes.setSize(0, 167);
 				timer.stop();
 			}
 			else
 			{
-				s.label_1.setSize(size - nextSize - 40, 167);
+				s.classes.setSize(size - nextSize - 40, 167);
 				s.setSize(size - nextSize, 173);
 				size = size - nextSize;
 			}
@@ -453,12 +438,12 @@ public class MainWindow extends JFrame implements ActionListener
 			if (size + nextSize > 465)
 			{
 				s.setSize(465, 173);
-				s.label_1.setSize(425, 167);
+				s.classes.setSize(425, 167);
 				timer.stop();
 			}
 			else
 			{
-				s.label_1.setSize(size + nextSize - 40, 167);
+				s.classes.setSize(size + nextSize - 40, 167);
 				s.setSize(size + nextSize, 173);
 				size = size + nextSize;
 			}
@@ -591,5 +576,54 @@ public class MainWindow extends JFrame implements ActionListener
 		timer.start();
 		
 		s.state = !s.state;
+	}
+	
+	public SemesterBox isPointInsideBox(int x, int y)
+	{
+		if(isInBox(x, y, fresh_fall))
+			return fresh_fall;
+		else if(isInBox(x, y, fresh_winter))
+			return fresh_winter;
+		else if(isInBox(x, y, fresh_spring))
+			return fresh_spring;
+		else if(isInBox(x, y, fresh_summer))
+			return fresh_summer;
+		else if(isInBox(x, y, soph_fall))
+			return soph_fall;
+		else if(isInBox(x, y, soph_winter))
+			return soph_winter;
+		else if(isInBox(x, y, soph_spring))
+			return soph_spring;
+		else if(isInBox(x, y, soph_summer))
+			return soph_summer;
+		else if(isInBox(x, y, juni_fall))
+			return juni_fall;
+		else if(isInBox(x, y, juni_winter))
+			return juni_winter;
+		else if(isInBox(x, y, juni_spring))
+			return juni_spring;
+		else if(isInBox(x, y, juni_summer))
+			return juni_summer;
+		else if(isInBox(x, y, seni_fall))
+			return seni_fall;
+		else if(isInBox(x, y, seni_winter))
+			return seni_winter;
+		else if(isInBox(x, y, seni_spring))
+			return seni_spring;
+		else if(isInBox(x, y, seni_summer))
+			return seni_summer;
+		else
+			return null;
+	}
+	
+	public boolean isInBox(int x, int y, SemesterBox b)
+	{
+		if(x >= b.getX() &&  x <= b.getX()+b.getWidth() && 
+				 y >= b.getY() && y <= b.getY()+b.getHeight())
+		{
+			return true;
+		}
+			
+		return false;
 	}
 }
