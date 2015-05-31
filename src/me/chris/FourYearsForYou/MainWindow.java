@@ -113,7 +113,7 @@ public class MainWindow extends JFrame implements ActionListener
 		contentPane.add(GlobalVariables.cla);
 
 		label_6 = new JLabel("");
-		label_6.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Red Divider.png")));
+		label_6.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Red Divider.png")));
 		label_6.setBounds(0, 929, 1100, 21);
 		contentPane.add(label_6);
 
@@ -145,42 +145,42 @@ public class MainWindow extends JFrame implements ActionListener
 		label_9.setFont(new Font("Arial", Font.BOLD, 30));
 
 		label_8 = new JLabel("");
-		label_8.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Info Box.png")));
+		label_8.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Info Box.png")));
 		label_8.setBounds(915, 263, 75, 50);
 		contentPane.add(label_8);
 
 		label_7 = new JLabel("");
-		label_7.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Info Box.png")));
+		label_7.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Info Box.png")));
 		label_7.setBounds(1000, 263, 75, 50);
 		contentPane.add(label_7);
 
 		label_5 = new JLabel("");
-		label_5.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Row Backgrounds.png")));
+		label_5.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Row Backgrounds.png")));
 		label_5.setBounds(0, 341, 1100, 844);
 		contentPane.add(label_5);
 
 		label_4 = new JLabel("");
-		label_4.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Red Divider.png")));
+		label_4.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Red Divider.png")));
 		label_4.setBounds(0, 320, 1100, 21);
 		contentPane.add(label_4);
 
 		label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/RPI Title.png")));
+		label_3.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/RPI Title.png")));
 		label_3.setBounds(80, 5, 165, 39);
 		contentPane.add(label_3);
 
 		label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/4Y4Y Title.png")));
+		label_2.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/4Y4Y Title.png")));
 		label_2.setBounds(55, 15, 338, 108);
 		contentPane.add(label_2);
 
 		label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Gray Drop.png")));
+		label_1.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Gray Drop.png")));
 		label_1.setBounds(64, -50, 342, 155);
 		contentPane.add(label_1);
 
 		label = new JLabel("");
-		label.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Banner.png")));
+		label.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Banner.png")));
 		label.setBounds(0, -75, 1100, 514);
 		contentPane.add(label);
 
@@ -208,7 +208,7 @@ public class MainWindow extends JFrame implements ActionListener
 						label_3.setLocation(375, 15);
 
 						label_1.setBounds(64, -50, 492, 155);
-						label_1.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Gray Drop - Scrolled.png")));
+						label_1.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Gray Drop - Scrolled.png")));
 					}
 					else if (future_y < 95)
 					{
@@ -241,7 +241,7 @@ public class MainWindow extends JFrame implements ActionListener
 						label_2.setLocation(55, future_y - 80);
 						label_3.setLocation(80, future_y - 90);
 
-						label_1.setIcon(new ImageIcon(Testing.class.getResource("/me/chris/Resources/Gray Drop.png")));
+						label_1.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Gray Drop.png")));
 						label_1.setBounds(64, -50, 342, 155);
 					}
 					else
