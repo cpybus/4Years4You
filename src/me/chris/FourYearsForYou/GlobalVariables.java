@@ -1,7 +1,5 @@
 package me.chris.FourYearsForYou;
 
-import javax.swing.JFrame;
-
 public class GlobalVariables
 {
 	public static MainWindow p;

@@ -19,8 +19,6 @@ public class MainWindow extends JFrame implements ActionListener
 	private static final long serialVersionUID = -2451788337777377959L;
 
 	private JPanel contentPane;
-
-	JLabel label_8;
 	JLabel label_7;
 	JLabel label_6;
 	JLabel label_5;
@@ -60,9 +58,6 @@ public class MainWindow extends JFrame implements ActionListener
 	boolean animate; // true means expand, false means contract
 	int year;
 	int semester;
-	
-	
-	private JLabel label_9;
 	private JLabel label_10;
 
 	public MainWindow()
@@ -136,18 +131,6 @@ public class MainWindow extends JFrame implements ActionListener
 		label_10.setFont(new Font("Arial", Font.BOLD, 30));
 		label_10.setBounds(1000, 263, 75, 50);
 		contentPane.add(label_10);
-
-		label_9 = new JLabel("");
-		label_9.setHorizontalAlignment(SwingConstants.CENTER);
-		label_9.setForeground(Color.WHITE);
-		label_9.setBounds(915, 263, 75, 50);
-		contentPane.add(label_9);
-		label_9.setFont(new Font("Arial", Font.BOLD, 30));
-
-		label_8 = new JLabel("");
-		label_8.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Info Box.png")));
-		label_8.setBounds(915, 263, 75, 50);
-		contentPane.add(label_8);
 
 		label_7 = new JLabel("");
 		label_7.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Info Box.png")));
@@ -269,7 +252,6 @@ public class MainWindow extends JFrame implements ActionListener
 		label_5.setLocation(0, variable5);
 
 		label_7.setLocation(1000, variable6);
-		label_8.setLocation(915, variable6);
 		
 		for (int yearIndex = 0; yearIndex < allSemesters.size(); yearIndex++)
 		{

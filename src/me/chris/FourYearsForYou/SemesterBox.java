@@ -63,27 +63,36 @@ public class SemesterBox extends JPanel
 		
 		c2 = new Class();
 		c2.setLocation(0, 24);
+		c1.setNextClass(c2);
 		classes.add(c2);
 		
 		c3 = new Class();
 		c3.setLocation(0, 48);
+		c2.setNextClass(c3);
 		classes.add(c3);
 		
 		c4 = new Class();
 		c4.setLocation(0, 72);
+		c3.setNextClass(c4);
 		classes.add(c4);
 		
 		c5 = new Class();
 		c5.setLocation(0, 96);
+		c4.setNextClass(c5);
 		classes.add(c5);
 		
 		c6 = new Class();
 		c6.setLocation(0, 120);
+		c5.setNextClass(c6);
 		classes.add(c6);
 		
 		c7 = new Class();
 		c7.setLocation(0, 144);
+		c6.setNextClass(c7);
 		classes.add(c7);
+		
+
+		c7.setNextClass(c1);
 		
 		
 		//The grid thing
