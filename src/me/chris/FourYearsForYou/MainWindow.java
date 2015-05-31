@@ -57,10 +57,11 @@ public class MainWindow extends JFrame implements ActionListener
 	ArrayList<SemesterBox> seniSemesters = new ArrayList<SemesterBox>();
 
 	Timer timer;
-	int size;
-	SemesterBox s;
-	int row;
 	boolean animate; // true means expand, false means contract
+	int year;
+	int semester;
+	
+	
 	private JLabel label_9;
 	private JLabel label_10;
 
@@ -313,6 +314,7 @@ public class MainWindow extends JFrame implements ActionListener
 
 	public void actionPerformed(ActionEvent ae)
 	{
+		int size = allSemesters.get(year).get(semester).getWidth();
 		int nextSize;
 
 		if (!animate)
@@ -321,14 +323,14 @@ public class MainWindow extends JFrame implements ActionListener
 
 			if (size - nextSize < 40)
 			{
-				s.setSize(40, 173);
-				s.classes.setSize(0, 167);
+				allSemesters.get(year).get(semester).setSize(40, 173);
+				allSemesters.get(year).get(semester).classes.setSize(0, 167);
 				timer.stop();
 			}
 			else
 			{
-				s.classes.setSize(size - nextSize - 40, 167);
-				s.setSize(size - nextSize, 173);
+				allSemesters.get(year).get(semester).classes.setSize(size - nextSize - 40, 167);
+				allSemesters.get(year).get(semester).setSize(size - nextSize, 173);
 				size = size - nextSize;
 			}
 		}
@@ -338,183 +340,66 @@ public class MainWindow extends JFrame implements ActionListener
 
 			if (size + nextSize > 465)
 			{
-				s.setSize(465, 173);
-				s.classes.setSize(425, 167);
+				allSemesters.get(year).get(semester).setSize(465, 173);
+				allSemesters.get(year).get(semester).classes.setSize(425, 167);
 				timer.stop();
 			}
 			else
 			{
-				s.classes.setSize(size + nextSize - 40, 167);
-				s.setSize(size + nextSize, 173);
+				allSemesters.get(year).get(semester).classes.setSize(size + nextSize - 40, 167);
+				allSemesters.get(year).get(semester).setSize(size + nextSize, 173);
 				size = size + nextSize;
 			}
 		}
 
-		UpdateRowWidth(row);
+		UpdateRowWidth(year);
 	}
 
 	public void routeAnimation(Component c)
 	{
-		if (fresh_fall == c || fresh_winter == c || fresh_spring == c || fresh_summer == c)
+		for (int yearIndex = 0; yearIndex < allSemesters.size(); yearIndex++)
 		{
-			if (fresh_fall == c)
+			for (int semesterIndex = 0; semesterIndex < allSemesters.get(yearIndex).size(); semesterIndex++)
 			{
-				s = fresh_fall;
-			}
-			else if (fresh_winter == c)
-			{
-				s = fresh_winter;
-			}
-			else if (fresh_spring == c)
-			{
-				s = fresh_spring;
-			}
-			else if (fresh_summer == c)
-			{
-				s = fresh_summer;
-			}
-			else
-			{
-				return;
-			}
+				if (allSemesters.get(yearIndex).get(semesterIndex) == c)
+				{
+					year = yearIndex;
+					semester = semesterIndex;
+					
+					if (allSemesters.get(yearIndex).get(semesterIndex).state)
+					{
+						animate = false;
+					}
+					else
+					{
+						animate = true;
+					}
 
-			size = s.getWidth();
-			row = 0;
-		}
-		else if (soph_fall == c || soph_winter == c || soph_spring == c || soph_summer == c)
-		{
-			if (soph_fall == c)
-			{
-				s = soph_fall;
-			}
-			else if (soph_winter == c)
-			{
-				s = soph_winter;
-			}
-			else if (soph_spring == c)
-			{
-				s = soph_spring;
-			}
-			else if (soph_summer == c)
-			{
-				s = soph_summer;
-			}
-			else
-			{
-				return;
-			}
+					timer = new Timer(10, this);
+					timer.start();
 
-			size = s.getWidth();
-			row = 1;
+					allSemesters.get(yearIndex).get(semesterIndex).state = !allSemesters.get(yearIndex).get(semesterIndex).state;
+					
+					return;
+				}
+			}
 		}
-		else if (juni_fall == c || juni_winter == c || juni_spring == c || juni_summer == c)
-		{
-			if (juni_fall == c)
-			{
-				s = juni_fall;
-			}
-			else if (juni_winter == c)
-			{
-				s = juni_winter;
-			}
-			else if (juni_spring == c)
-			{
-				s = juni_spring;
-			}
-			else if (juni_summer == c)
-			{
-				s = juni_summer;
-			}
-			else
-			{
-				return;
-			}
-
-			size = s.getWidth();
-			row = 2;
-		}
-		else if (seni_fall == c || seni_winter == c || seni_spring == c || seni_summer == c)
-		{
-			if (seni_fall == c)
-			{
-				s = seni_fall;
-			}
-			else if (seni_winter == c)
-			{
-				s = seni_winter;
-			}
-			else if (seni_spring == c)
-			{
-				s = seni_spring;
-			}
-			else if (seni_summer == c)
-			{
-				s = seni_summer;
-			}
-			else
-			{
-				return;
-			}
-
-			size = s.getWidth();
-			row = 3;
-		}
-		else
-		{
-			return;
-		}
-
-		if (s.state)
-		{
-			animate = false;
-		}
-		else
-		{
-			animate = true;
-		}
-
-		timer = new Timer(10, this);
-		timer.start();
-
-		s.state = !s.state;
 	}
 
 	public SemesterBox isPointInsideBox(int x, int y)
 	{
-		if (isInBox(x, y, fresh_fall))
-			return fresh_fall;
-		else if (isInBox(x, y, fresh_winter))
-			return fresh_winter;
-		else if (isInBox(x, y, fresh_spring))
-			return fresh_spring;
-		else if (isInBox(x, y, fresh_summer))
-			return fresh_summer;
-		else if (isInBox(x, y, soph_fall))
-			return soph_fall;
-		else if (isInBox(x, y, soph_winter))
-			return soph_winter;
-		else if (isInBox(x, y, soph_spring))
-			return soph_spring;
-		else if (isInBox(x, y, soph_summer))
-			return soph_summer;
-		else if (isInBox(x, y, juni_fall))
-			return juni_fall;
-		else if (isInBox(x, y, juni_winter))
-			return juni_winter;
-		else if (isInBox(x, y, juni_spring))
-			return juni_spring;
-		else if (isInBox(x, y, juni_summer))
-			return juni_summer;
-		else if (isInBox(x, y, seni_fall))
-			return seni_fall;
-		else if (isInBox(x, y, seni_winter))
-			return seni_winter;
-		else if (isInBox(x, y, seni_spring))
-			return seni_spring;
-		else if (isInBox(x, y, seni_summer))
-			return seni_summer;
-		else
-			return null;
+		for (int yearIndex = 0; yearIndex < allSemesters.size(); yearIndex++)
+		{
+			for (int semesterIndex = 0; semesterIndex < allSemesters.get(yearIndex).size(); semesterIndex++)
+			{
+				if (isInBox(x, y, allSemesters.get(yearIndex).get(semesterIndex)))
+				{
+					return allSemesters.get(yearIndex).get(semesterIndex);
+				}
+			}
+		}
+		
+		return null;
 	}
 
 	public boolean isInBox(int x, int y, SemesterBox b)
