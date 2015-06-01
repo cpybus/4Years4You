@@ -11,6 +11,7 @@ import javax.swing.SwingUtilities;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class SemesterBox extends JPanel
 {
@@ -21,13 +22,15 @@ public class SemesterBox extends JPanel
 	JPanel classes;
 	JLabel seasonLabel;
 	
-	Class c1;
-	Class c2;
-	Class c3;
-	Class c4;
-	Class c5;
-	Class c6;
-	Class c7;
+	Class c1 = new Class();
+	Class c2 = new Class();
+	Class c3 = new Class();
+	Class c4 = new Class();
+	Class c5 = new Class();
+	Class c6 = new Class();
+	Class c7 = new Class();
+	
+	ArrayList<Class> classList = new ArrayList<Class>();
 
 	public SemesterBox(int season, boolean open)
 	{
@@ -57,42 +60,45 @@ public class SemesterBox extends JPanel
 		classes.setLayout(null);
 		
 		
-		c1 = new Class();
+		//Classes
 		c1.setLocation(0, 0);
 		classes.add(c1);
 		
-		c2 = new Class();
 		c2.setLocation(0, 24);
 		c1.setNextClass(c2);
 		classes.add(c2);
 		
-		c3 = new Class();
 		c3.setLocation(0, 48);
 		c2.setNextClass(c3);
 		classes.add(c3);
 		
-		c4 = new Class();
 		c4.setLocation(0, 72);
 		c3.setNextClass(c4);
 		classes.add(c4);
 		
-		c5 = new Class();
 		c5.setLocation(0, 96);
 		c4.setNextClass(c5);
 		classes.add(c5);
 		
-		c6 = new Class();
 		c6.setLocation(0, 120);
 		c5.setNextClass(c6);
 		classes.add(c6);
 		
-		c7 = new Class();
 		c7.setLocation(0, 144);
 		c6.setNextClass(c7);
 		classes.add(c7);
-		
 
 		c7.setNextClass(c1);
+		
+		
+		//add classes to list
+		classList.add(c1);
+		classList.add(c2);
+		classList.add(c3);
+		classList.add(c4);
+		classList.add(c5);
+		classList.add(c6);
+		classList.add(c7);
 		
 		
 		//The grid thing
@@ -100,7 +106,6 @@ public class SemesterBox extends JPanel
 		grid.setBounds(0, 0, 425, 167);
 		classes.add(grid);
 		grid.setIcon(new ImageIcon(SemesterBox.class.getResource("/me/chris/Resources/Grid.png")));
-		
 		
 		
 		//Finally set the size
@@ -124,46 +129,68 @@ public class SemesterBox extends JPanel
 				e.getComponent().getParent().getParent().dispatchEvent(convertMouseEvent);
 			}
 		});
+		
 	}
 	
 	public boolean addClass(Class c)
 	{
-		if(c1.isEmpty())
+		for(int index = 0; index < classList.size(); index++)
 		{
-			c1.set(c);
-			return true;
+			if(classList.get(index).isEmpty())
+			{
+				classList.get(index).set(c);
+				return true;
+			}
 		}
-		else if(c2.isEmpty())
+		
+		return false;
+	}
+	
+	public double getTransferCredits()
+	{
+		double count = 0; 
+		
+		for(int index = 0; index < classList.size(); index++)
 		{
-			c2.set(c);
-			return true;
+			count += classList.get(index).getTransferCredits();
 		}
-		else if(c3.isEmpty())
+		
+		return count;
+	}
+	
+	public double getPlannedInstitutionCredits()
+	{
+		double count = 0; 
+		
+		for(int index = 0; index < classList.size(); index++)
 		{
-			c3.set(c);
-			return true;
+			count += classList.get(index).getPlannedInstitutionCredits();
 		}
-		else if(c4.isEmpty())
+		
+		return count;
+	}
+	
+	public double getFailedInstitutionCredits()
+	{
+		double count = 0; 
+		
+		for(int index = 0; index < classList.size(); index++)
 		{
-			c4.set(c);
-			return true;
+			count += classList.get(index).getFailedInstitutionCredits();
 		}
-		else if(c5.isEmpty())
+		
+		return count;
+	}
+	
+	public double getPassedInstitutionCredits()
+	{
+		double count = 0; 
+		
+		for(int index = 0; index < classList.size(); index++)
 		{
-			c5.set(c);
-			return true;
+			count += classList.get(index).getPassedInstitutionCredits();
 		}
-		else if(c6.isEmpty())
-		{
-			c6.set(c);
-			return true;
-		}
-		else if(c7.isEmpty())
-		{
-			c7.set(c);
-			return true;
-		}
-		else
-			return false;
+		
+		return count;
 	}
 }

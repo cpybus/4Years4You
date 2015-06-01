@@ -350,6 +350,8 @@ public class Class extends JPanel
 		l.setText(t.getText());
 		t.setVisible(false);
 		l.setVisible(true);
+		
+		GlobalVariables.p.updateInfoLabels();
 	}
 
 	public void fieldDone(JLabel l, JTextField t, String s)
@@ -357,6 +359,8 @@ public class Class extends JPanel
 		l.setText(s);
 		t.setVisible(false);
 		l.setVisible(true);
+		
+		GlobalVariables.p.updateInfoLabels();
 	}
 
 	public boolean checkIfValidLetterGrade(String t)
@@ -367,5 +371,67 @@ public class Class extends JPanel
 			return true;
 
 		return false;
+	}
+
+	public double getTransferCredits()
+	{
+		if (getTypeOfCredit() == 1)
+			return GlobalVariables.isDouble(credits_label.getText());
+
+		return 0;
+	}
+
+	public double getPlannedInstitutionCredits()
+	{
+		if (getTypeOfCredit() == 2)
+			return GlobalVariables.isDouble(credits_label.getText().trim());
+
+		return 0;
+	}
+
+	public double getFailedInstitutionCredits()
+	{
+		if (getTypeOfCredit() == 3)
+			return GlobalVariables.isDouble(credits_label.getText().trim());
+
+		return 0;
+	}
+
+	public double getPassedInstitutionCredits()
+	{
+		if (getTypeOfCredit() == 4)
+			return GlobalVariables.isDouble(credits_label.getText().trim());
+
+		return 0;
+	}
+
+	public double getQualityPoints()
+	{
+		if (getTypeOfCredit() == 3 || getTypeOfCredit() == 4)
+			return GlobalVariables.convertGradeToNumber(grade_label.getText().trim()) * GlobalVariables.isDouble(credits_label.getText().trim());
+
+		return -1; // done use this in the count
+	}
+
+	public int getTypeOfCredit() // 0=invalid, 1=transfer, 2=planned
+									// institution, 3=failed institution,
+									// 4=passed institution
+	{
+		String grade = grade_label.getText().trim();
+		String credits = credits_label.getText().trim();
+
+		if (checkIfValidLetterGrade(grade) == false || GlobalVariables.isDouble(credits) == -1)
+			return 0; // letter grade was invalid, or credits was "" or invalid
+
+		if (grade.equalsIgnoreCase(""))
+			return 2; // planned
+
+		if (grade.equalsIgnoreCase("TR"))
+			return 1;
+
+		if (grade.equalsIgnoreCase("F"))
+			return 3;
+
+		return 4;
 	}
 }

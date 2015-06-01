@@ -5,21 +5,18 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
 
-public class MainWindow extends JFrame implements ActionListener
+public class MainWindow extends JFrame
 {
-
 	private static final long serialVersionUID = -2451788337777377959L;
 
 	private JPanel contentPane;
-	JLabel label_7;
+
 	JLabel label_6;
 	JLabel label_5;
 	JLabel label_4;
@@ -54,11 +51,17 @@ public class MainWindow extends JFrame implements ActionListener
 	ArrayList<SemesterBox> juniSemesters = new ArrayList<SemesterBox>();
 	ArrayList<SemesterBox> seniSemesters = new ArrayList<SemesterBox>();
 
-	Timer timer;
-	boolean animate; // true means expand, false means contract
-	int year;
-	int semester;
-	private JLabel label_10;
+	Timer timer_semesterbox;
+	Timer timer_infolabels;
+
+	JLabel info_6 = new JLabel();
+	JLabel info_5 = new JLabel();
+	JLabel info_4 = new JLabel();
+	JLabel info_3 = new JLabel();
+	JLabel info_2 = new JLabel();
+	JLabel info_1 = new JLabel();
+	
+	ArrayList<JLabel> allInfoLabels = new ArrayList<JLabel>();
 
 	public MainWindow()
 	{
@@ -86,6 +89,13 @@ public class MainWindow extends JFrame implements ActionListener
 		allSemesters.add(sophSemesters);
 		allSemesters.add(juniSemesters);
 		allSemesters.add(seniSemesters);
+		
+		allInfoLabels.add(info_1);
+		allInfoLabels.add(info_2);
+		allInfoLabels.add(info_3);
+		allInfoLabels.add(info_4);
+		allInfoLabels.add(info_5);
+		allInfoLabels.add(info_6);
 
 		initialize();
 		GlobalVariables.p = this;
@@ -95,7 +105,6 @@ public class MainWindow extends JFrame implements ActionListener
 	private void initialize()
 	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// setBounds(100, 100, 1115, 989);
 		setBounds(100, 100, 1100, 975);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -107,6 +116,61 @@ public class MainWindow extends JFrame implements ActionListener
 
 		contentPane.add(GlobalVariables.cla);
 
+		info_6.setHorizontalTextPosition(SwingConstants.CENTER);
+		info_6.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Info Box.png")));
+		info_6.setHorizontalAlignment(SwingConstants.CENTER);
+		info_6.setForeground(Color.WHITE);
+		info_6.setFont(new Font("Arial", Font.BOLD, 29));
+		info_6.setToolTipText("Overall GPA");
+		info_6.setBounds(1000, 263, 75, 50);
+		contentPane.add(info_6);
+
+		info_5.setHorizontalTextPosition(SwingConstants.CENTER);
+		info_5.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Info Box.png")));
+		info_5.setHorizontalAlignment(SwingConstants.CENTER);
+		info_5.setForeground(Color.WHITE);
+		info_5.setFont(new Font("Arial", Font.BOLD, 29));
+		info_5.setToolTipText("Quality Points");
+		info_5.setBounds(1000, 263, 75, 50);
+		contentPane.add(info_5);
+
+		info_4.setHorizontalTextPosition(SwingConstants.CENTER);
+		info_4.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Info Box.png")));
+		info_4.setHorizontalAlignment(SwingConstants.CENTER);
+		info_4.setForeground(Color.WHITE);
+		info_4.setFont(new Font("Arial", Font.BOLD, 29));
+		info_4.setToolTipText("Passed Institution Credits");
+		info_4.setBounds(1000, 263, 75, 50);
+		contentPane.add(info_4);
+
+		info_3.setHorizontalTextPosition(SwingConstants.CENTER);
+		info_3.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Info Box.png")));
+		info_3.setHorizontalAlignment(SwingConstants.CENTER);
+		info_3.setForeground(Color.WHITE);
+		info_3.setFont(new Font("Arial", Font.BOLD, 29));
+		info_3.setToolTipText("Failed Institution Credits");
+		info_3.setBounds(1000, 263, 75, 50);
+		contentPane.add(info_3);
+
+		info_2.setHorizontalTextPosition(SwingConstants.CENTER);
+		info_2.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Info Box.png")));
+		info_2.setHorizontalAlignment(SwingConstants.CENTER);
+		info_2.setForeground(Color.WHITE);
+		info_2.setFont(new Font("Arial", Font.BOLD, 29));
+		info_2.setToolTipText("Planned Institution Credits");
+		info_2.setBounds(1000, 263, 75, 50);
+		contentPane.add(info_2);
+
+		info_1.setHorizontalTextPosition(SwingConstants.CENTER);
+		info_1.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Info Box.png")));
+		info_1.setHorizontalAlignment(SwingConstants.CENTER);
+		info_1.setForeground(Color.WHITE);
+		info_1.setFont(new Font("Arial", Font.BOLD, 29));
+		info_1.setToolTipText("Total Transfer Credits");
+		info_1.setBounds(1000, 263, 75, 50);
+		contentPane.add(info_1);
+
+		// red divider
 		label_6 = new JLabel("");
 		label_6.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Red Divider.png")));
 		label_6.setBounds(0, 929, 1100, 21);
@@ -119,23 +183,15 @@ public class MainWindow extends JFrame implements ActionListener
 				if (semesterIndex == 0)
 					allSemesters.get(yearIndex).get(semesterIndex).setLocation(19, 211 * yearIndex + 360);
 				else
-					allSemesters.get(yearIndex).get(semesterIndex).setLocation(allSemesters.get(yearIndex).get(semesterIndex - 1).getX() + allSemesters.get(yearIndex).get(semesterIndex - 1).getWidth() + 17, 211 * yearIndex + 360);
-			
+					allSemesters
+							.get(yearIndex)
+							.get(semesterIndex)
+							.setLocation(allSemesters.get(yearIndex).get(semesterIndex - 1).getX() + allSemesters.get(yearIndex).get(semesterIndex - 1).getWidth() + 17,
+									211 * yearIndex + 360);
+
 				contentPane.add(allSemesters.get(yearIndex).get(semesterIndex));
 			}
 		}
-
-		label_10 = new JLabel("");
-		label_10.setHorizontalAlignment(SwingConstants.CENTER);
-		label_10.setForeground(Color.WHITE);
-		label_10.setFont(new Font("Arial", Font.BOLD, 30));
-		label_10.setBounds(1000, 263, 75, 50);
-		contentPane.add(label_10);
-
-		label_7 = new JLabel("");
-		label_7.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Info Box.png")));
-		label_7.setBounds(1000, 263, 75, 50);
-		contentPane.add(label_7);
 
 		label_5 = new JLabel("");
 		label_5.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Row Backgrounds.png")));
@@ -166,6 +222,19 @@ public class MainWindow extends JFrame implements ActionListener
 		label.setIcon(new ImageIcon(MainWindow.class.getResource("/me/chris/Resources/Banner.png")));
 		label.setBounds(0, -75, 1100, 514);
 		contentPane.add(label);
+
+		info_6.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent arg0)
+			{
+				AnimateInfoLabels animation = new AnimateInfoLabels((info_1.getX() == 1000));
+				
+				timer_infolabels = new Timer(10, animation);
+				timer_infolabels.start();
+				
+			}
+		});
 
 		contentPane.addMouseListener(new MouseAdapter()
 		{
@@ -242,17 +311,20 @@ public class MainWindow extends JFrame implements ActionListener
 			}
 		});
 	}
-	
+
 	public void scrollRows(int variable1, int variable2, int variable3, int variable4, int variable5, int variable6)
 	{
 		label.setLocation(0, variable3);
-		
+
 		label_4.setLocation(0, variable4);
 
 		label_5.setLocation(0, variable5);
-
-		label_7.setLocation(1000, variable6);
 		
+		for(int index = 0; index < allInfoLabels.size(); index++)
+		{
+			allInfoLabels.get(index).setLocation(allInfoLabels.get(index).getX(), variable6);
+		}
+
 		for (int yearIndex = 0; yearIndex < allSemesters.size(); yearIndex++)
 		{
 			for (int semesterIndex = 0; semesterIndex < allSemesters.get(yearIndex).size(); semesterIndex++)
@@ -260,8 +332,12 @@ public class MainWindow extends JFrame implements ActionListener
 				if (semesterIndex == 0)
 					allSemesters.get(yearIndex).get(semesterIndex).setLocation(19, 211 * yearIndex + variable1 + variable2);
 				else
-					allSemesters.get(yearIndex).get(semesterIndex).setLocation(allSemesters.get(yearIndex).get(semesterIndex - 1).getX() + allSemesters.get(yearIndex).get(semesterIndex - 1).getWidth() + 17, 211 * yearIndex + variable1 + variable2);
-			
+					allSemesters
+							.get(yearIndex)
+							.get(semesterIndex)
+							.setLocation(allSemesters.get(yearIndex).get(semesterIndex - 1).getX() + allSemesters.get(yearIndex).get(semesterIndex - 1).getWidth() + 17,
+									211 * yearIndex + variable1 + variable2);
+
 			}
 		}
 	}
@@ -294,49 +370,6 @@ public class MainWindow extends JFrame implements ActionListener
 		}
 	}
 
-	public void actionPerformed(ActionEvent ae)
-	{
-		int size = allSemesters.get(year).get(semester).getWidth();
-		int nextSize;
-
-		if (!animate)
-		{
-			nextSize = (int) ((3 * (size * size) / -8480.0) + ((303 * size) / 1696.0) - (335 / 212.0));
-
-			if (size - nextSize < 40)
-			{
-				allSemesters.get(year).get(semester).setSize(40, 173);
-				allSemesters.get(year).get(semester).classes.setSize(0, 167);
-				timer.stop();
-			}
-			else
-			{
-				allSemesters.get(year).get(semester).classes.setSize(size - nextSize - 40, 167);
-				allSemesters.get(year).get(semester).setSize(size - nextSize, 173);
-				size = size - nextSize;
-			}
-		}
-		else
-		{
-			nextSize = ((int) ((3 * (size * size) / -8480.0) + ((303 * size) / 1696.0) - (335 / 212.0)));
-
-			if (size + nextSize > 465)
-			{
-				allSemesters.get(year).get(semester).setSize(465, 173);
-				allSemesters.get(year).get(semester).classes.setSize(425, 167);
-				timer.stop();
-			}
-			else
-			{
-				allSemesters.get(year).get(semester).classes.setSize(size + nextSize - 40, 167);
-				allSemesters.get(year).get(semester).setSize(size + nextSize, 173);
-				size = size + nextSize;
-			}
-		}
-
-		UpdateRowWidth(year);
-	}
-
 	public void routeAnimation(Component c)
 	{
 		for (int yearIndex = 0; yearIndex < allSemesters.size(); yearIndex++)
@@ -345,23 +378,13 @@ public class MainWindow extends JFrame implements ActionListener
 			{
 				if (allSemesters.get(yearIndex).get(semesterIndex) == c)
 				{
-					year = yearIndex;
-					semester = semesterIndex;
-					
-					if (allSemesters.get(yearIndex).get(semesterIndex).state)
-					{
-						animate = false;
-					}
-					else
-					{
-						animate = true;
-					}
+					AnimateSemesterBox animation = new AnimateSemesterBox(yearIndex, semesterIndex, !allSemesters.get(yearIndex).get(semesterIndex).state);
 
-					timer = new Timer(10, this);
-					timer.start();
+					timer_semesterbox = new Timer(10, animation);
+					timer_semesterbox.start();
 
 					allSemesters.get(yearIndex).get(semesterIndex).state = !allSemesters.get(yearIndex).get(semesterIndex).state;
-					
+
 					return;
 				}
 			}
@@ -380,7 +403,7 @@ public class MainWindow extends JFrame implements ActionListener
 				}
 			}
 		}
-		
+
 		return null;
 	}
 
@@ -394,13 +417,107 @@ public class MainWindow extends JFrame implements ActionListener
 		return false;
 	}
 
-	public void getTotalCredits()
+	public double getTransferCredits()
 	{
+		double count = 0;
 
+		for (int yearIndex = 0; yearIndex < allSemesters.size(); yearIndex++)
+		{
+			for (int semesterIndex = 0; semesterIndex < allSemesters.get(yearIndex).size(); semesterIndex++)
+			{
+				count += allSemesters.get(yearIndex).get(semesterIndex).getTransferCredits();
+			}
+		}
+
+		return count;
 	}
 
-	public void getOverallGPA()
+	public double getPlannedInstitutionCredits()
 	{
+		double count = 0;
 
+		for (int yearIndex = 0; yearIndex < allSemesters.size(); yearIndex++)
+		{
+			for (int semesterIndex = 0; semesterIndex < allSemesters.get(yearIndex).size(); semesterIndex++)
+			{
+				count += allSemesters.get(yearIndex).get(semesterIndex).getPlannedInstitutionCredits();
+			}
+		}
+
+		return count;
+	}
+
+	public double getFailedInstitutionCredits()
+	{
+		double count = 0;
+
+		for (int yearIndex = 0; yearIndex < allSemesters.size(); yearIndex++)
+		{
+			for (int semesterIndex = 0; semesterIndex < allSemesters.get(yearIndex).size(); semesterIndex++)
+			{
+				count += allSemesters.get(yearIndex).get(semesterIndex).getFailedInstitutionCredits();
+			}
+		}
+
+		return count;
+	}
+
+	public double getPassedInstitutionCredits()
+	{
+		double count = 0;
+
+		for (int yearIndex = 0; yearIndex < allSemesters.size(); yearIndex++)
+		{
+			for (int semesterIndex = 0; semesterIndex < allSemesters.get(yearIndex).size(); semesterIndex++)
+			{
+				count += allSemesters.get(yearIndex).get(semesterIndex).getPassedInstitutionCredits();
+			}
+		}
+
+		return count;
+	}
+
+	public double getQualityPoints()
+	{
+		// double count = 0;
+		double sum = 0;
+
+		for (int yearIndex = 0; yearIndex < allSemesters.size(); yearIndex++)
+		{
+			for (int semesterIndex = 0; semesterIndex < allSemesters.get(yearIndex).size(); semesterIndex++)
+			{
+				for (int classIndex = 0; classIndex < allSemesters.get(yearIndex).get(semesterIndex).classList.size(); classIndex++)
+				{
+					double temp = allSemesters.get(yearIndex).get(semesterIndex).classList.get(classIndex).getQualityPoints();
+					if (temp != -1)
+					{
+						// count++;
+						sum += temp;
+					}
+				}
+			}
+		}
+
+		return sum;
+	}
+
+	public double getOverallGPA()
+	{
+		if (getPassedInstitutionCredits() + getFailedInstitutionCredits() == 0)
+			return 0;
+
+		return getQualityPoints() / (getPassedInstitutionCredits() + getFailedInstitutionCredits());
+	}
+
+	public void updateInfoLabels()
+	{
+		info_1.setText(String.format(String.format("%.3g%n", getTransferCredits())));
+		info_2.setText(String.format(String.format("%.3g%n", getPlannedInstitutionCredits())));
+		info_3.setText(String.format(String.format("%.3g%n", getFailedInstitutionCredits())));
+		info_4.setText(String.format(String.format("%.3g%n", getPassedInstitutionCredits())));
+		info_5.setText(String.format(String.format("%.3g%n", getQualityPoints())));
+		info_6.setText(String.format(String.format("%.3g%n", getOverallGPA())));
+		
+		
 	}
 }
